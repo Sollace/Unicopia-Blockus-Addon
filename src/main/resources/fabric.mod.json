@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "unicopia_blockus",
+  "version": "${version}",
+  "name": "Unicopia",
+  "description": "Blockus Blocks for Unicopia!",
+  "authors": [ "Sollace" ],
+  "contributors": [ ],
+  "contact": {
+    "sources": "https://github.com/Sollace/Unicopia-Blockus-Addon",
+    "issues": "https://github.com/Sollace/Unicopia-Blockus-Addon/issues"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.minelittlepony.unicopia.UnicopiaBlockus"
+    ],
+    "client": [
+      "com.minelittlepony.unicopia.client.UnicopiaBlockusClient"
+    ]
+  },
+  "depends": {
+    "minecraft": "${minecraftVersion}",
+    "fabricloader": "${loaderVersion}",
+    "java": ">=17",
+    "fabric-api": "${fabricVersion}",
+    "unicopia": "${unicopiaVersion}",
+    "blockus": "${blockusVersion}"
+  },
+  "suggests": {
+    "modmenu": "*"
+  },
+  "custom": {
+    "fabwork": {
+      "requiredOn": "*"
+    },
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/zKSZ8Mg",
+        "modmenu.github_releases": "https://github.com/Sollace/Unicopia-Blockus-Addon/releases",
+        "modmenu.modrinth": "https://modrinth.com/mod/unicopia-blockus"
+      },
+      "update_checker": true
+    }
+  }
+}
