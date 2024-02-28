@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "unicopia:block/mossy_palm_slab"
+    },
+    "type=double": {
+      "model": "unicopia:block/mossy_palm_planks"
+    },
+    "type=top": {
+      "model": "unicopia:block/mossy_palm_slab_top"
+    }
+  }
+}

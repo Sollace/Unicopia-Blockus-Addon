@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "mossy_palm_planks",
+  "ingredients": [
+    {
+      "item": "unicopia:palm_planks"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "unicopia:mossy_palm_planks"
+  }
+}

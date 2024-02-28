@@ -1,0 +1,9 @@
+{
+  "parent": "blockus:block/tinted_large_tree_pot",
+  "textures": {
+    "log_top": "unicopia:block/palm_small_logs_top",
+    "log": "unicopia:block/palm_small_logs",
+    "leaves": "unicopia:block/palm_leaves",
+    "soil": "block/dirt"
+  }
+}

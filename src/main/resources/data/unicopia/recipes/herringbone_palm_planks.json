@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "herringbone_planks",
+  "key": {
+    "#": {
+      "item": "unicopia:palm_planks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "###",
+    "  #"
+  ],
+  "result": {
+    "count": 5,
+    "item": "unicopia:herringbone_palm_planks"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "unicopia:block/mossy_palm_planks",
+    "side": "unicopia:block/mossy_palm_planks",
+    "top": "unicopia:block/mossy_palm_planks"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "unicopia_blockus",
+  "id": "unicopia-blockus",
   "version": "${version}",
   "name": "Unicopia",
   "description": "Blockus Blocks for Unicopia!",
@@ -10,6 +10,9 @@
     "sources": "https://github.com/Sollace/Unicopia-Blockus-Addon",
     "issues": "https://github.com/Sollace/Unicopia-Blockus-Addon/issues"
   },
+  "mixins": [
+    "unicopia-blockus.mixin.json"
+  ],
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",

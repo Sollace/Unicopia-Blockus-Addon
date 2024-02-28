@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "unicopia:block/palm_diagonal_timber_frame",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "unicopia:block/palm_diagonal_timber_frame"
+    },
+    "facing=south": {
+      "model": "unicopia:block/palm_diagonal_timber_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "unicopia:block/palm_diagonal_timber_frame",
+      "y": 270
+    }
+  }
+}
