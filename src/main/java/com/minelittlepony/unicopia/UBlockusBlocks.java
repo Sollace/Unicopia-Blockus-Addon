@@ -1,26 +1,45 @@
 package com.minelittlepony.unicopia;
 
-import com.brand.blockus.content.BlocksRegistration;
-import com.brand.blockus.content.types.BSSTypes;
-import com.brand.blockus.content.types.PottedLargeTypes;
-import com.brand.blockus.content.types.TimberFrameTypes;
+import java.util.List;
+
+import com.brand.blockus.blocks.base.OrientableBlockBase;
+import com.brand.blockus.blocks.base.SmallHedgeBlock;
 import com.minelittlepony.unicopia.block.UBlocks;
+import com.minelittlepony.unicopia.block.zap.ZapBlock;
+import com.minelittlepony.unicopia.block.zap.ZapSlabBlock;
+import com.minelittlepony.unicopia.block.zap.ZapStairsBlock;
 import com.minelittlepony.unicopia.server.world.UTreeGen;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public interface UBlockusBlocks {
-    BSSTypes PALM_MOSAIC = new BSSTypes("palm_mosaic", UBlocks.PALM_PLANKS);
+    BlockFactories ELECTRIFIED_BLOCK_FACTORIES = new BlockFactories(
+            BlockFactory.of(ZapBlock::new),
+            BlockFactory.of(ZapSlabBlock::new),
+            ZapStairsBlock::new,
+            BlockFactory.of(PillarBlock::new),
+            (base, settings) -> new SmallHedgeBlock(settings.allowsSpawning(BlockFactories::canSpawnOnLeaves).suffocates(BlockFactories::never).blockVision(BlockFactories::never)),
+            BlockFactory.of(OrientableBlockBase::new)
+    );
 
-    BSSTypes MOSSY_PALM_PLANKS = new BSSTypes("mossy_palm_planks", UBlocks.PALM_PLANKS);
+    List<BlockusWoodset> WOOD_SETS = List.of(
+        new BlockusWoodset("palm", UBlocks.PALM_PLANKS, UBlocks.PALM_SLAB, UBlocks.PALM_LOG, UBlocks.PALM_LEAVES, UTreeGen.BANANA_TREE.sapling().get(), BlockFactories.DEFAULT, UBlockusBlocks::register)
+    );
 
-    Block HERRINGBONE_PALM_PLANKS = BlocksRegistration.register("herringbone_palm_planks", BlocksRegistration.createCopy(UBlocks.PALM_PLANKS));
-    Block PALM_SMALL_LOGS = BlocksRegistration.register("palm_small_logs", BlocksRegistration.createPillarCopy(UBlocks.PALM_LOG));
-    TimberFrameTypes PALM_TIMBER_FRAME = new TimberFrameTypes("palm", UBlocks.PALM_PLANKS);
-    Block PALM_SMALL_HEDGE = BlocksRegistration.registerSmallHedge("palm_small_hedge", UBlocks.PALM_LEAVES);
+    static void bootstrap() { }
 
-    PottedLargeTypes POTTED_PALM = new PottedLargeTypes("potted_palm", UTreeGen.BANANA_TREE.sapling().get());
+    static Block register(String name, Block block, boolean addItem) {
 
-    static void bootstrap() {
+        Registry.register(Registries.BLOCK, UnicopiaBlockus.id(name), block);
+        if (addItem) {
+            Registry.register(Registries.ITEM, UnicopiaBlockus.id(name), new BlockItem(block, new Item.Settings()));
+        }
+
+        return block;
     }
 }

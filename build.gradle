@@ -27,7 +27,18 @@ archivesBaseName = project.name
 
 loom {
     mixin.defaultRefmapName = 'unicopia-blockus.mixin.refmap.json'
+    runs {
+        datagen {
+            server()
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.modid=unicopia-blockus"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+            runDir "build/datagen"
+        }
+    }
 }
+assemble.dependsOn(runDatagen)
 
 reckon {
     scopeFromProp()
@@ -51,19 +62,27 @@ dependencies {
     modApi "net.fabricmc:fabric-loader:${project.loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
-    modCompileOnly "com.sollace:fabwork:${project.fabwork_version}"
-    modCompileOnly "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraformer_api_version}"
-    modCompileOnly "com.jamieswhiteshirt:reach-entity-attributes:${project.reach_attributes_version}"
-    modCompileOnly "com.minelittlepony:kirin:${project.kirin_version}"
-    modCompileOnly "maven.modrinth:unicopia:${project.unicopia_version}"
-    modCompileOnly "maven.modrinth:blockus:${project.blockus_version}"
+    modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+    modApi "com.sollace:fabwork:${project.fabwork_version}"
+    modApi "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraformer_api_version}"
+    modApi "com.jamieswhiteshirt:reach-entity-attributes:${project.reach_attributes_version}"
+    modApi "com.minelittlepony:kirin:${project.kirin_version}"
+    modApi "maven.modrinth:unicopia:${project.unicopia_version}"
+    modApi "maven.modrinth:blockus:${project.blockus_version}"
 
     if (project.tmi_type == 'emi') {
       modCompileOnly "dev.emi:emi-fabric:${project.emi_version}"
     } else {
       modCompileOnly "dev.emi:emi-fabric-dummy:${project.emi_version}"
     }
+}
+
+sourceSets {
+  main {
+    resources {
+      srcDirs += [ "src/main/generated" ]
+    }
+  }
 }
 
 processResources {

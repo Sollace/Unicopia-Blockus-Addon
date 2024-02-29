@@ -22,6 +22,9 @@
     ],
     "client": [
       "com.minelittlepony.unicopia.client.UnicopiaBlockusClient"
+    ],
+    "fabric-datagen": [
+      "com.minelittlepony.unicopia.data.UBlockusDatagen"
     ]
   },
   "depends": {
