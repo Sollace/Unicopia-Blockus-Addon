@@ -1,10 +1,11 @@
-package com.minelittlepony.unicopia.data.blockus.providers;
+package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.List;
 
 import com.brand.blockus.blocks.base.LargeFlowerPotBlock;
 import com.brand.blockus.content.BlockusBlocks;
-import com.minelittlepony.unicopia.UBlockusBlocks;
+import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
+
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;

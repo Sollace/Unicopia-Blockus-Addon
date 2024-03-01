@@ -1,18 +1,19 @@
-package com.minelittlepony.unicopia.data;
+package com.minelittlepony.unicopia.blockus.datagen;
 
-import com.minelittlepony.unicopia.UnicopiaBlockus;
-import com.minelittlepony.unicopia.data.blockus.providers.UBlockusBlockTagProvider;
-import com.minelittlepony.unicopia.data.blockus.providers.UBlockusItemTagProvider;
-import com.minelittlepony.unicopia.data.blockus.providers.UBlockusLootTableProvider;
-import com.minelittlepony.unicopia.data.blockus.providers.UBlockusModelProvider;
-import com.minelittlepony.unicopia.data.blockus.providers.UBlockusRecipeProvider;
+import com.minelittlepony.unicopia.blockus.Main;
+import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusBlockTagProvider;
+import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusItemTagProvider;
+import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusLootTableProvider;
+import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusModelProvider;
+import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusRecipeProvider;
+
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-public class UBlockusDatagen implements DataGeneratorEntrypoint {
+public class Datagen implements DataGeneratorEntrypoint {
     @Override
     public String getEffectiveModId() {
-        return UnicopiaBlockus.DEFAULT_NAMESPACE;
+        return Main.DEFAULT_NAMESPACE;
     }
 
     @Override

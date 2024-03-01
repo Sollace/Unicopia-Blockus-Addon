@@ -1,11 +1,11 @@
-package com.minelittlepony.unicopia.data.blockus.providers;
+package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.concurrent.CompletableFuture;
 
 import com.brand.blockus.utils.tags.BlockusBlockTags;
 import com.brand.blockus.utils.tags.BlockusItemTags;
-import com.minelittlepony.unicopia.UBlockusBlocks;
 import com.minelittlepony.unicopia.Unicopia;
+import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;

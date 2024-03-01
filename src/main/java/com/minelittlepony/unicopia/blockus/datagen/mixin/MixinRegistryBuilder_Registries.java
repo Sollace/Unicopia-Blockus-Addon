@@ -1,4 +1,4 @@
-package com.minelittlepony.unicopia.data.mixin;
+package com.minelittlepony.unicopia.blockus.datagen.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

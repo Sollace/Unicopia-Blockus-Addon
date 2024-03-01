@@ -18,13 +18,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.minelittlepony.unicopia.UnicopiaBlockus"
+      "com.minelittlepony.unicopia.blockus.Main"
     ],
     "client": [
-      "com.minelittlepony.unicopia.client.UnicopiaBlockusClient"
+      "com.minelittlepony.unicopia.blockus.client.Main"
     ],
     "fabric-datagen": [
-      "com.minelittlepony.unicopia.data.UBlockusDatagen"
+      "com.minelittlepony.unicopia.datagen.Datagen"
     ]
   },
   "depends": {

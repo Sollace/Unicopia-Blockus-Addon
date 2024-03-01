@@ -1,4 +1,4 @@
-package com.minelittlepony.unicopia;
+package com.minelittlepony.unicopia.blockus;
 
 import java.util.List;
 import net.minecraft.block.Block;

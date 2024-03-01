@@ -1,4 +1,4 @@
-package com.minelittlepony.unicopia;
+package com.minelittlepony.unicopia.blockus;
 
 import java.util.List;
 
@@ -35,9 +35,9 @@ public interface UBlockusBlocks {
 
     static Block register(String name, Block block, boolean addItem) {
 
-        Registry.register(Registries.BLOCK, UnicopiaBlockus.id(name), block);
+        Registry.register(Registries.BLOCK, Main.id(name), block);
         if (addItem) {
-            Registry.register(Registries.ITEM, UnicopiaBlockus.id(name), new BlockItem(block, new Item.Settings()));
+            Registry.register(Registries.ITEM, Main.id(name), new BlockItem(block, new Item.Settings()));
         }
 
         return block;

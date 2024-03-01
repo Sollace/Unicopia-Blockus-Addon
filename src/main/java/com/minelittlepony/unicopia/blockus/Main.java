@@ -1,4 +1,4 @@
-package com.minelittlepony.unicopia;
+package com.minelittlepony.unicopia.blockus;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.brand.blockus.itemgroups.BlockusItemGroups;
 
-public class UnicopiaBlockus implements ModInitializer {
+public class Main implements ModInitializer {
     public static final String DEFAULT_NAMESPACE = "unicopia";
     public static final Logger LOGGER = LogManager.getLogger();
 
