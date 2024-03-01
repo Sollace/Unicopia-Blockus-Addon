@@ -6,6 +6,7 @@ import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusItemTagProv
 import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusLootTableProvider;
 import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusModelProvider;
 import com.minelittlepony.unicopia.blockus.datagen.providers.UBlockusRecipeProvider;
+import com.minelittlepony.unicopia.blockus.datagen.providers.ULangProvider;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -26,7 +27,7 @@ public class Datagen implements DataGeneratorEntrypoint {
         pack.addProvider((output, registries) -> new UBlockusItemTagProvider(output, registries, blockTags));
 
         pack.addProvider(UBlockusLootTableProvider::new);
-        //pack.addProvider(BlockusWorldgenProvider::new);
         pack.addProvider(UBlockusModelProvider::new);
+        pack.addProvider(ULangProvider::new);
     }
 }
