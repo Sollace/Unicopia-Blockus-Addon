@@ -24,7 +24,7 @@
       "com.minelittlepony.unicopia.blockus.client.Main"
     ],
     "fabric-datagen": [
-      "com.minelittlepony.unicopia.datagen.Datagen"
+      "com.minelittlepony.unicopia.blockus.datagen.Datagen"
     ]
   },
   "depends": {
