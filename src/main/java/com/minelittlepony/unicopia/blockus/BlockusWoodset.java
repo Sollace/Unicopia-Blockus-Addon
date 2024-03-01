@@ -19,7 +19,6 @@ public record BlockusWoodset (
         Block smallHedge,
         Block flowerPot) {
 
-
     public BlockusWoodset(String id, Block planks, Block slab, Block log, Block leaves, Block sapling, BlockFactories factory, Registrar registrar) {
         this(
             id,
@@ -30,7 +29,7 @@ public record BlockusWoodset (
             registrar.register("herringbone_" + id + "_planks", factory.block().create(planks)),
             registrar.register(id + "_small_logs", factory.pillar().create(log)),
             registrar.register(id + "_small_hedge", factory.hedge().create(leaves)),
-            registrar.register("potted_palm", BlocksRegistration.createLargeFlowerPot(sapling), false)
+            registrar.register("potted_large_" + id, BlocksRegistration.createLargeFlowerPot(sapling), false)
         );
     }
 
@@ -42,5 +41,9 @@ public record BlockusWoodset (
                 ),
                 timberFrames.stream()
         );
+    }
+
+    public Stream<Block> blocks() {
+        return Stream.concat(buildingBlocks(), Stream.of(smallHedge, flowerPot));
     }
 }
