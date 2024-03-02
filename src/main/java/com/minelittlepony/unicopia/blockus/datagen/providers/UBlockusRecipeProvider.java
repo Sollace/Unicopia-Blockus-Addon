@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.brand.blockus.data.providers.BlockusRecipeProvider;
+import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -27,8 +28,11 @@ public class UBlockusRecipeProvider extends FabricRecipeProvider {
             BlockusRecipeProvider.offerMosaicRecipe(exporter, RecipeCategory.DECORATIONS, woodset.mosaics().get(0), woodset.slab());
             BlockusRecipeProvider.offerHerringBoneRecipe(exporter, woodset.herringbonePlanks(), woodset.planks());
             BlockusRecipeProvider.offerMossyRecipe(exporter, woodset.mossy().get(0), woodset.planks());
-            BlockusRecipeProvider.offerSmallHedgesRecipe(exporter, woodset.smallHedge(), woodset.leaves());
             BlockusRecipeProvider.createTimberFramesRecipes(exporter, woodset.planks(), woodset.timberFrames().get(0), woodset.timberFrames().get(1), woodset.timberFrames().get(2));
+        });
+        BlockusRecipeProvider.offerSmallLogsRecipe(exporter, UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS, UBlocks.GOLDEN_OAK_LOG);
+        UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
+            BlockusRecipeProvider.offerSmallHedgesRecipe(exporter, plantset.smallHedge(), plantset.leaves());
         });
     }
 

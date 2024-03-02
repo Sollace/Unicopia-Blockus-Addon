@@ -24,11 +24,12 @@ public class Main implements ModInitializer {
         UBlockusBlocks.bootstrap();
         ItemGroupEvents.modifyEntriesEvent(BlockusItemGroups.BLOCKUS_BUILDING_BLOCKS).register(event -> {
             UBlockusBlocks.WOOD_SETS.forEach(set -> {
-                event.addAll(set.buildingBlocks().map(ItemConvertible::asItem).map(Item::getDefaultStack).toList());
+                event.addAll(set.blocks().map(ItemConvertible::asItem).map(Item::getDefaultStack).toList());
             });
+            event.add(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
         });
         ItemGroupEvents.modifyEntriesEvent(BlockusItemGroups.BLOCKUS_NATURAL).register(event -> {
-            UBlockusBlocks.WOOD_SETS.forEach(set -> {
+            UBlockusBlocks.PLANT_SETS.forEach(set -> {
                 event.add(set.smallHedge());
             });
         });

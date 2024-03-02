@@ -27,8 +27,6 @@ public class UBlockusBlockTagProvider extends FabricTagProvider.BlockTagProvider
             getOrCreateTagBuilder(BlockTags.SLABS).add(woodset.mosaics().get(1));
             getOrCreateTagBuilder(BlockTags.STAIRS).add(woodset.mossy().get(2));
             getOrCreateTagBuilder(BlockTags.SLABS).add(woodset.mossy().get(1));
-            getOrCreateTagBuilder(BlockusBlockTags.LARGE_FLOWER_POTS).add(woodset.flowerPot());
-            getOrCreateTagBuilder(BlockusBlockTags.SMALL_HEDGES).add(woodset.smallHedge());
             getOrCreateTagBuilder(BlockusBlockTags.TIMBER_FRAMES).add(woodset.timberFrames().toArray(Block[]::new));
             getOrCreateTagBuilder(BlockusBlockTags.ALL_WOODEN_MOSAICS).add(woodset.mosaics().toArray(Block[]::new));
             getOrCreateTagBuilder(BlockusBlockTags.ALL_MOSSY_PLANKS).add(woodset.mossy().toArray(Block[]::new));
@@ -38,6 +36,11 @@ public class UBlockusBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(woodset.mossy().get(0));
             getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Unicopia.id(woodset.id() + "_logs"))).add(woodset.smallLogs());
             getOrCreateTagBuilder(BlockTags.PLANKS).add(woodset.herringbonePlanks());
+        });
+        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Unicopia.id("golden_oak_logs"))).add(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
+        UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
+            getOrCreateTagBuilder(BlockusBlockTags.LARGE_FLOWER_POTS).add(plantset.flowerPot());
+            getOrCreateTagBuilder(BlockusBlockTags.SMALL_HEDGES).add(plantset.smallHedge());
         });
     }
 }

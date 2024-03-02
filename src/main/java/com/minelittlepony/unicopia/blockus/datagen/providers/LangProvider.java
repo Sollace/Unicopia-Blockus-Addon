@@ -16,6 +16,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 public abstract class LangProvider implements DataProvider {
+    private static final Pattern SNAKE_CASE_PATTERN = Pattern.compile("(^|_)(.)");
+
     private final FabricDataOutput output;
     private final DataOutput.PathResolver langPathResolver;
 
@@ -43,13 +45,15 @@ public abstract class LangProvider implements DataProvider {
         return "Default English Translations";
     }
 
+    public static String formatToTitleCase(String string) {
+        return SNAKE_CASE_PATTERN.matcher(string).replaceAll(result -> (result.group(1).isBlank() ? "" : " ") + result.group(2).toUpperCase(Locale.ROOT));
+    }
+
     interface TranslationGenerator {
         void addTranslation(String translation, String text);
 
         default void addTranslation(Block block) {
-            String key = block.getTranslationKey();
-            String name = Pattern.compile("(^|_)(.)").matcher(Registries.BLOCK.getId(block).getPath()).replaceAll(result -> (result.group(1).isBlank() ? "" : " ") + result.group(2).toUpperCase(Locale.ROOT));
-            addTranslation(key, name);
+            addTranslation(block.getTranslationKey(), formatToTitleCase(Registries.BLOCK.getId(block).getPath()));
         }
 
         default void addTranslation(Block...rest) {

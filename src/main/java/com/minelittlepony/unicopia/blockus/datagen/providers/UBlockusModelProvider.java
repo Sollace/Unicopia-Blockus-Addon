@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.brand.blockus.data.providers.BlockusModelProvider;
+import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -41,11 +42,16 @@ public class UBlockusModelProvider extends BlockusModelProvider {
             offerBSSModels(woodset.mossy(), modelGenerator);
             registerAxisRotatedCubeColumn(modelGenerator, woodset.smallLogs());
             modelGenerator.registerSimpleCubeAll(woodset.herringbonePlanks());
-            registerSmallHedge(modelGenerator, woodset.smallHedge(), woodset.leaves());
+
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(0));
             registerDiagonalTimberFrame(modelGenerator, woodset.timberFrames().get(1));
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(2));
-            registerPottedPlant(modelGenerator, woodset.smallLogs(), woodset.leaves(), woodset.flowerPot());
+        });
+        registerAxisRotatedCubeColumn(modelGenerator, UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
+        UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
+            Block leaves = plantset.leaves() == UBlocks.MANGO_LEAVES ? Blocks.JUNGLE_LEAVES : plantset.leaves();
+            registerPottedPlant(modelGenerator, plantset.smallLogs(), leaves, plantset.flowerPot());
+            registerSmallHedge(modelGenerator, plantset.smallHedge(), leaves);
         });
     }
 

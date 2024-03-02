@@ -13,21 +13,21 @@ import net.minecraft.client.render.RenderLayer;
 public class Main implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        UBlockusBlocks.WOOD_SETS.forEach(woodSet -> {
-            registerLeafyBlock(woodSet.smallHedge(), woodSet.leaves());
-            registerLeafyBlock(woodSet.flowerPot(), woodSet.leaves());
+        UBlockusBlocks.PLANT_SETS.forEach(plantSet -> {
+            registerLeafyBlock(plantSet.smallHedge(), plantSet.leaves());
+            registerLeafyBlock(plantSet.flowerPot(), plantSet.leaves());
         });
     }
 
     private static void registerLeafyBlock(Block block, Block base) {
         ColorProviderRegistry.BLOCK.register((block1, pos, world, layer) -> {
             BlockColorProvider provider = ColorProviderRegistry.BLOCK.get(base);
-            return provider == null ? -1 : provider.getColor(block1, pos, world, layer);
+            return provider == null ? -1 : provider.getColor(base.getDefaultState(), pos, world, layer);
         }, block);
 
         ColorProviderRegistry.ITEM.register((item, layer) -> {
             ItemColorProvider provider = ColorProviderRegistry.ITEM.get(base);
-            return provider == null ? -1 : provider.getColor(item, layer);
+            return provider == null ? -1 : provider.getColor(base.asItem().getDefaultStack(), layer);
         }, block.asItem());
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutoutMipped(), block);
     }
