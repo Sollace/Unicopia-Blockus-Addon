@@ -1,8 +1,6 @@
 package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.List;
-import java.util.function.Consumer;
-
 import com.brand.blockus.data.providers.BlockusRecipeProvider;
 import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
@@ -10,7 +8,7 @@ import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.recipe.book.RecipeCategory;
 
@@ -20,7 +18,7 @@ public class UBlockusRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> exporter) {
+    public void generate(RecipeExporter exporter) {
         UBlockusBlocks.woodsets().forEach(woodset -> {
             offerBSSRecipes(woodset.mosaics(), exporter);
             offerBSSRecipes(woodset.mossy(), exporter);
@@ -36,7 +34,7 @@ public class UBlockusRecipeProvider extends FabricRecipeProvider {
         });
     }
 
-    private static void offerBSSRecipes(List<Block> trio, Consumer<RecipeJsonProvider> exporter) {
+    private static void offerBSSRecipes(List<Block> trio, RecipeExporter exporter) {
         RecipeProvider.offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, trio.get(1), trio.get(0));
         BlockusRecipeProvider.offerStairsRecipe(exporter, trio.get(2), trio.get(0));
     }
