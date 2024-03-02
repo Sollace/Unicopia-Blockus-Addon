@@ -18,7 +18,7 @@ public class ULangProvider extends LangProvider {
 
     @Override
     protected void generate(TranslationGenerator generator) {
-        UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
+        UBlockusBlocks.woodsets().forEach(woodset -> {
             generator.addTranslation(woodset.blocks()
                     .filter(b -> b != woodset.smallLogs())
                     .toArray(Block[]::new));

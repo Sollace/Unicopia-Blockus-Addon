@@ -22,7 +22,7 @@ public class UBlockusBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries) {
-        UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
+        UBlockusBlocks.woodsets().forEach(woodset -> {
             getOrCreateTagBuilder(BlockTags.STAIRS).add(woodset.mosaics().get(2));
             getOrCreateTagBuilder(BlockTags.SLABS).add(woodset.mosaics().get(1));
             getOrCreateTagBuilder(BlockTags.STAIRS).add(woodset.mossy().get(2));

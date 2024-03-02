@@ -1,6 +1,8 @@
 package com.minelittlepony.unicopia.blockus;
 
 import java.util.List;
+import java.util.stream.Stream;
+
 import com.brand.blockus.content.BlockusBlocks;
 import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.block.zap.ZapBlock;
@@ -11,6 +13,7 @@ import com.minelittlepony.unicopia.blockus.block.ZapPillarBlock;
 import com.minelittlepony.unicopia.blockus.block.ZapSmallHedgeBlock;
 import com.minelittlepony.unicopia.server.world.UTreeGen;
 
+import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -36,7 +39,9 @@ public interface UBlockusBlocks {
 
     List<BlockusWoodset> WOOD_SETS = List.of(
         new BlockusWoodset("palm", UBlocks.PALM_PLANKS, UBlocks.PALM_SLAB, UBlocks.PALM_LOG, BlockFactories.DEFAULT, REGISTRAR),
-        new BlockusWoodset("zap", UBlocks.ZAP_PLANKS, UBlocks.ZAP_SLAB, UBlocks.ZAP_LOG, ZAP_FACTORIES, REGISTRAR)
+        new BlockusWoodset("zap", UBlocks.ZAP_PLANKS, UBlocks.ZAP_SLAB, UBlocks.ZAP_LOG, ZAP_FACTORIES, REGISTRAR,
+            new BlockusWoodset("waxed_zap", UBlocks.WAXED_ZAP_PLANKS, UBlocks.WAXED_ZAP_SLAB, UBlocks.WAXED_ZAP_LOG, BlockFactories.DEFAULT, REGISTRAR)
+        )
     );
     Block GOLDEN_OAK_SMALL_LOGS = REGISTRAR.register("golden_oak_small_logs", BlockFactories.DEFAULT.pillar().create(UBlocks.GOLDEN_OAK_LOG));
     List<BlockusPlantset> PLANT_SETS = List.of(
@@ -49,5 +54,15 @@ public interface UBlockusBlocks {
         new BlockusPlantset("sweet_apple", UBlocks.SWEET_APPLE_LEAVES, UTreeGen.SWEET_APPLE_TREE.sapling().get(), BlockusBlocks.OAK_SMALL_LOGS, BlockFactories.DEFAULT, REGISTRAR)
     );
 
-    static void bootstrap() { }
+    static Stream<BlockusWoodset> woodsets() {
+        return WOOD_SETS.stream().flatMap(set -> Stream.concat(Stream.of(set), set.waxedSet().stream()));
+    }
+
+    static void bootstrap() {
+        WOOD_SETS.forEach(woodset -> {
+            woodset.waxablePairs().forEach(pair -> {
+                OxidizableBlocksRegistry.registerWaxableBlockPair(pair.getLeft(), pair.getRight());
+            });
+        });
+    }
 }

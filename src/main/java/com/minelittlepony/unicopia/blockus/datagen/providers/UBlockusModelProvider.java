@@ -15,6 +15,7 @@ import net.minecraft.data.client.BlockStateVariant;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Model;
+import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureKey;
 import net.minecraft.data.client.TextureMap;
@@ -38,14 +39,25 @@ public class UBlockusModelProvider extends BlockusModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator modelGenerator) {
         UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
-            offerBSSModels(woodset.mosaics(), modelGenerator);
-            offerBSSModels(woodset.mossy(), modelGenerator);
+            registerBSSModels(woodset.mosaics(), modelGenerator);
+            registerBSSModels(woodset.mossy(), modelGenerator);
             registerAxisRotatedCubeColumn(modelGenerator, woodset.smallLogs());
             modelGenerator.registerSimpleCubeAll(woodset.herringbonePlanks());
 
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(0));
             registerDiagonalTimberFrame(modelGenerator, woodset.timberFrames().get(1));
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(2));
+
+            woodset.waxedSet().ifPresent(waxedset -> {
+                registerParentedBSSModels(woodset.mosaics(), waxedset.mosaics(), modelGenerator);
+                registerParentedBSSModels(woodset.mossy(), waxedset.mossy(), modelGenerator);
+                registerParentedAxisRotatedCubeColumn(modelGenerator, woodset.smallLogs(), waxedset.smallLogs());
+                modelGenerator.registerParented(woodset.herringbonePlanks(), waxedset.herringbonePlanks());
+
+                modelGenerator.registerParented(woodset.timberFrames().get(0), waxedset.timberFrames().get(0));
+                registerParentedDiagonalTimberFrame(modelGenerator, woodset.timberFrames().get(1), waxedset.timberFrames().get(1));
+                modelGenerator.registerParented(woodset.timberFrames().get(2), waxedset.timberFrames().get(2));
+            });
         });
         registerAxisRotatedCubeColumn(modelGenerator, UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
         UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
@@ -59,8 +71,41 @@ public class UBlockusModelProvider extends BlockusModelProvider {
     public void generateItemModels(ItemModelGenerator modelGenerator) {
     }
 
-    private void offerBSSModels(List<Block> trio, BlockStateModelGenerator modelGenerator) {
+    private void registerBSSModels(List<Block> trio, BlockStateModelGenerator modelGenerator) {
         modelGenerator.registerCubeAllModelTexturePool(trio.get(0)).slab(trio.get(1)).stairs(trio.get(2));
+    }
+
+    private void registerParentedBSSModels(List<Block> modelSource, List<Block> child, BlockStateModelGenerator modelGenerator) {
+        modelGenerator.registerParented(modelSource.get(0), child.get(0));
+
+        Identifier full = ModelIds.getBlockModelId(modelSource.get(0));
+        Identifier slab = ModelIds.getBlockModelId(modelSource.get(1));
+        Identifier slabTop = ModelIds.getBlockSubModelId(modelSource.get(1), "_top");
+        modelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createSlabBlockState(child.get(1), slab, slabTop, full));
+        modelGenerator.registerParentedItemModel(child.get(1), slab);
+
+        Identifier inner = ModelIds.getBlockSubModelId(modelSource.get(2), "_inner");
+        Identifier straight = ModelIds.getBlockModelId(modelSource.get(2));
+        Identifier outer = ModelIds.getBlockSubModelId(modelSource.get(2), "_outer");
+        modelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createStairsBlockState(child.get(2), inner, straight, outer));
+        modelGenerator.registerParentedItemModel(child.get(2), straight);
+    }
+
+    public void registerParentedAxisRotatedCubeColumn(BlockStateModelGenerator modelGenerator, Block modelSource, Block child) {
+        Identifier vertical = ModelIds.getBlockModelId(modelSource);
+        Identifier horizontal = ModelIds.getBlockSubModelId(modelSource, "_horizontal");
+        modelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createAxisRotatedBlockState(child, vertical, horizontal));
+        modelGenerator.registerParentedItemModel(child, vertical);
+    }
+
+    private void registerParentedDiagonalTimberFrame(BlockStateModelGenerator modelGenerator, Block modelSource, Block child) {
+        Identifier modelId = ModelIds.getBlockModelId(modelSource);
+        modelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(child).coordinate(BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+                .register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
+                .register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                .register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                .register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R90))));
+        modelGenerator.registerParentedItemModel(child, modelId);
     }
 
     private void registerDiagonalTimberFrame(BlockStateModelGenerator modelGenerator, Block block) {

@@ -25,7 +25,7 @@ public class UBlockusItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries) {
-        UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
+        UBlockusBlocks.woodsets().forEach(woodset -> {
             getOrCreateTagBuilder(BlockusItemTags.PLANKS_THAT_BURN).add(woodset.planks().asItem());
             getOrCreateTagBuilder(BlockusItemTags.HERRINGBONE_PLANKS_THAT_BURN).add(woodset.herringbonePlanks().asItem());
             getOrCreateTagBuilder(BlockusItemTags.WOODEN_MOSAIC_THAT_BURN).add(woodset.mosaics().get(0).asItem());

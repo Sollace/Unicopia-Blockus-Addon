@@ -23,7 +23,7 @@ public class UBlockusLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
+        UBlockusBlocks.woodsets().forEach(woodset -> {
             addBlockStairsandSlabDrops(woodset.mosaics());
             addBlockStairsandSlabDrops(woodset.mossy());
             woodset.timberFrames().forEach(this::addDrop);

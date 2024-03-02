@@ -23,7 +23,7 @@ public class Main implements ModInitializer {
     public void onInitialize() {
         UBlockusBlocks.bootstrap();
         ItemGroupEvents.modifyEntriesEvent(BlockusItemGroups.BLOCKUS_BUILDING_BLOCKS).register(event -> {
-            UBlockusBlocks.WOOD_SETS.forEach(set -> {
+            UBlockusBlocks.woodsets().forEach(set -> {
                 event.addAll(set.blocks().map(ItemConvertible::asItem).map(Item::getDefaultStack).toList());
             });
             event.add(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);

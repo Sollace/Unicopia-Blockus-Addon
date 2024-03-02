@@ -21,7 +21,7 @@ public class UBlockusRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
-        UBlockusBlocks.WOOD_SETS.forEach(woodset -> {
+        UBlockusBlocks.woodsets().forEach(woodset -> {
             offerBSSRecipes(woodset.mosaics(), exporter);
             offerBSSRecipes(woodset.mossy(), exporter);
             BlockusRecipeProvider.offerSmallLogsRecipe(exporter, woodset.smallLogs(), woodset.log());
