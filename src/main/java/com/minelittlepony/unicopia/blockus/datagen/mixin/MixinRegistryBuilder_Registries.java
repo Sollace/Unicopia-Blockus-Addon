@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(targets = "net.minecraft.registry.RegistryBuilder$Registries")
 abstract class MixinRegistryBuilder_Registries {
     @Overwrite
-    public void validateReferences() {
+    public void checkUnreferencedKeys() {
         System.out.println("Skipping validate references");
     }
 }
