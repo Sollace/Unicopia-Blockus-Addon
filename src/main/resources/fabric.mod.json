@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "unicopia-blockus",
   "version": "${version}",
-  "name": "Unicopia",
+  "name": "Unicopia Blockus Addon",
   "description": "Blockus Blocks for Unicopia!",
   "authors": [ "Sollace" ],
   "contributors": [ ],
@@ -48,6 +48,7 @@
         "modmenu.github_releases": "https://github.com/Sollace/Unicopia-Blockus-Addon/releases",
         "modmenu.modrinth": "https://modrinth.com/mod/unicopia-blockus"
       },
+      "parent": "unicopia",
       "update_checker": true
     }
   }

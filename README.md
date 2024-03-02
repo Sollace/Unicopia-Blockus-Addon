@@ -15,3 +15,18 @@ Currently this mod includes:
  - Small Palm Logs
  - Palm Timber Frame
  - Potted Palm Trees
+
+## Zap Wood + Waxed Zap Wood
+ - Zap Mosaic
+ - Mossy Zap Planks
+ - Herringbone Zap Planks
+ - Small Zap Logs
+ - Zap Timber Frame
+ - Potted Zap Trees
+
+## Golden Oak Wood
+ - Small Golden Oak Logs
+
+## Potted Fruit Trees
+ - Potted Sweet, Sour, and Granny Smith trees
+ - Potted Mango trees
