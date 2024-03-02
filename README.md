@@ -6,7 +6,7 @@
 [![Downloads](https://img.shields.io/github/downloads/Sollace/Unicopia-Blockus-Addon/total.svg?color=yellowgreen)](https://github.com/Sollace/Unicopia-Blockus-Addon/releases/latest)
 ![](https://img.shields.io/badge/api-fabric-orange.svg)
 
-Adds blockus patterned blocks for the Unicopia woodsets and items.
+This is an extension to [Unicopia](https://modrinth.com/mod/unicopia) that allows you to use its wood blocks as materials to create the various block types added by [Blockus](https://modrinth.com/mod/blockus)
 
 Currently this mod includes:
 
