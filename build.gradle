@@ -5,7 +5,7 @@ buildscript {
 }
 plugins {
     id 'java-library'
-    id 'fabric-loom' version '0.12-SNAPSHOT'
+    id 'fabric-loom' version '1.5-SNAPSHOT'
     id 'com.modrinth.minotaur' version '2.+'
     id 'org.ajoberstar.reckon' version '0.13.0'
 }
@@ -27,18 +27,13 @@ archivesBaseName = project.name
 
 loom {
     mixin.defaultRefmapName = 'unicopia-blockus.mixin.refmap.json'
-    runs {
-        datagen {
-            server()
-            name "Data Generation"
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.modid=unicopia-blockus"
-            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-            runDir "build/datagen"
-        }
+}
+
+fabricApi {
+    configureDataGeneration {
+      modId = 'unicopia-blockus'
     }
 }
-assemble.dependsOn(runDatagen)
 
 reckon {
     scopeFromProp()
@@ -75,14 +70,6 @@ dependencies {
     } else {
       modCompileOnly "dev.emi:emi-fabric-dummy:${project.emi_version}"
     }
-}
-
-sourceSets {
-  main {
-    resources {
-      srcDirs += [ "src/main/generated" ]
-    }
-  }
 }
 
 processResources {
