@@ -1,9 +1,10 @@
 package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import com.brand.blockus.blocks.base.LargeFlowerPotBlock;
-import com.brand.blockus.content.BlockusBlocks;
+import com.brand.blockus.registry.content.BlockusBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -15,10 +16,11 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.registry.RegistryWrapper;
 
 public class UBlockusLootTableProvider extends FabricBlockLootTableProvider {
-    public UBlockusLootTableProvider(FabricDataOutput output) {
-        super(output);
+    public UBlockusLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(output, registryLookup);
     }
 
     @Override
@@ -27,6 +29,7 @@ public class UBlockusLootTableProvider extends FabricBlockLootTableProvider {
             addBlockStairsandSlabDrops(woodset.mosaics());
             addBlockStairsandSlabDrops(woodset.mossy());
             woodset.timberFrames().forEach(this::addDrop);
+            woodset.posts().forEach(this::addDrop);
             addDrop(woodset.herringbonePlanks());
             addDrop(woodset.smallLogs());
         });

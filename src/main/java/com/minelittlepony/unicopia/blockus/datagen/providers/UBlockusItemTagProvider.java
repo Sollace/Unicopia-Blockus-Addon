@@ -2,8 +2,8 @@ package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.brand.blockus.utils.tags.BlockusBlockTags;
-import com.brand.blockus.utils.tags.BlockusItemTags;
+import com.brand.blockus.registry.tag.BlockusBlockTags;
+import com.brand.blockus.registry.tag.BlockusItemTags;
 import com.minelittlepony.unicopia.Unicopia;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
@@ -29,7 +29,7 @@ public class UBlockusItemTagProvider extends FabricTagProvider.ItemTagProvider {
             getOrCreateTagBuilder(BlockusItemTags.PLANKS_THAT_BURN).add(woodset.planks().asItem());
             getOrCreateTagBuilder(BlockusItemTags.HERRINGBONE_PLANKS_THAT_BURN).add(woodset.herringbonePlanks().asItem());
             getOrCreateTagBuilder(BlockusItemTags.WOODEN_MOSAIC_THAT_BURN).add(woodset.mosaics().get(0).asItem());
-            copy(TagKey.of(RegistryKeys.BLOCK, new Identifier("c", "planks_that_burn")), TagKey.of(RegistryKeys.ITEM, new Identifier("c", "planks_that_burn")));
+            copy(TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", "planks_that_burn")), TagKey.of(RegistryKeys.ITEM, Identifier.of("c", "planks_that_burn")));
             copy(TagKey.of(RegistryKeys.BLOCK, Unicopia.id(woodset.id() + "_logs")), TagKey.of(RegistryKeys.ITEM, Unicopia.id(woodset.id() + "_logs")));
             getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD).add(woodset.mossy().stream().map(Block::asItem).toArray(Item[]::new));
         });

@@ -3,7 +3,7 @@ package com.minelittlepony.unicopia.blockus.datagen.providers;
 import java.util.List;
 import java.util.Optional;
 
-import com.brand.blockus.data.providers.BlockusModelProvider;
+import com.brand.blockus.datagen.providers.BlockusModelProvider;
 import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
@@ -30,7 +30,7 @@ public class UBlockusModelProvider extends BlockusModelProvider {
     private final TextureKey LOG = TextureKey.of("log");
     private final TextureKey LEAVES = TextureKey.of("leaves");
     private final TextureKey SOIL = TextureKey.of("soil");
-    private final Model TREE_POT_MODEL = new Model(Optional.of(new Identifier("blockus:block/tinted_large_tree_pot")), Optional.empty(), LOG_TOP, LOG, LEAVES, SOIL);
+    private final Model TREE_POT_MODEL = new Model(Optional.of(Identifier.of("blockus:block/tinted_large_tree_pot")), Optional.empty(), LOG_TOP, LOG, LEAVES, SOIL);
 
     public UBlockusModelProvider(FabricDataOutput output) {
         super(output);
@@ -44,6 +44,9 @@ public class UBlockusModelProvider extends BlockusModelProvider {
             registerAxisRotatedCubeColumn(modelGenerator, woodset.smallLogs());
             modelGenerator.registerSimpleCubeAll(woodset.herringbonePlanks());
 
+            registerPost(modelGenerator, woodset.posts().get(0), woodset.log());
+            registerPost(modelGenerator, woodset.posts().get(1), woodset.strippedLog());
+
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(0));
             registerDiagonalTimberFrame(modelGenerator, woodset.timberFrames().get(1));
             modelGenerator.registerSimpleCubeAll(woodset.timberFrames().get(2));
@@ -51,6 +54,10 @@ public class UBlockusModelProvider extends BlockusModelProvider {
             woodset.waxedSet().ifPresent(waxedset -> {
                 registerParentedBSSModels(woodset.mosaics(), waxedset.mosaics(), modelGenerator);
                 registerParentedBSSModels(woodset.mossy(), waxedset.mossy(), modelGenerator);
+
+                registerPost(modelGenerator, waxedset.posts().get(0), woodset.log());
+                registerPost(modelGenerator, waxedset.posts().get(1), woodset.strippedLog());
+
                 registerParentedAxisRotatedCubeColumn(modelGenerator, woodset.smallLogs(), waxedset.smallLogs());
                 modelGenerator.registerParented(woodset.herringbonePlanks(), waxedset.herringbonePlanks());
 

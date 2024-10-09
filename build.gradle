@@ -25,7 +25,6 @@ description = project.displayname
 archivesBaseName = project.name
 
 loom {
-    mixin.defaultRefmapName = 'unicopia-blockus.mixin.refmap.json'
     runs {
         datagen {
             server()
@@ -64,7 +63,7 @@ dependencies {
     modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
     modApi "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraformer_api_version}"
     modApi "com.minelittlepony:kirin:${project.kirin_version}"
-    modApi "com.minelittlepony:unicopia:${project.unicopia_version}"
+    modApi "com.minelittlepony:unicopia:${project.unicopia_version}", { exclude group: "com.github.MattiDragon" }
     modApi "maven.modrinth:blockus:${project.blockus_version}"
 
     if (project.tmi_type == 'emi') {

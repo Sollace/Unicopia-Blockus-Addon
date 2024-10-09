@@ -1,6 +1,7 @@
 package com.minelittlepony.unicopia.blockus;
 
 import com.brand.blockus.blocks.base.OrientableBlockBase;
+import com.brand.blockus.blocks.base.PostBlock;
 import com.brand.blockus.blocks.base.SmallHedgeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -17,7 +18,8 @@ public record BlockFactories(
         BlockFactory<?> stairs,
         BlockFactory<?> pillar,
         BlockFactory<?> hedge,
-        BlockFactory<?> orientable
+        BlockFactory<?> orientable,
+        BlockFactory<?> post
 ) {
     public static final BlockFactories DEFAULT = new BlockFactories(
             BlockFactory.of(Block::new),
@@ -25,7 +27,8 @@ public record BlockFactories(
             StairsBlock::new,
             BlockFactory.of(PillarBlock::new),
             (base, settings) -> new SmallHedgeBlock(settings.allowsSpawning(BlockFactories::canSpawnOnLeaves).suffocates(BlockFactories::never).blockVision(BlockFactories::never)),
-            BlockFactory.of(OrientableBlockBase::new)
+            BlockFactory.of(OrientableBlockBase::new),
+            BlockFactory.of(PostBlock::new)
     );
 
     public static boolean always(BlockState state, BlockView world, BlockPos pos) {

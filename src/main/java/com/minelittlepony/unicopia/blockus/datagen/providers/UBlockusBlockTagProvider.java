@@ -2,7 +2,7 @@ package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.brand.blockus.utils.tags.BlockusBlockTags;
+import com.brand.blockus.registry.tag.BlockusBlockTags;
 import com.minelittlepony.unicopia.Unicopia;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
@@ -30,7 +30,8 @@ public class UBlockusBlockTagProvider extends FabricTagProvider.BlockTagProvider
             getOrCreateTagBuilder(BlockusBlockTags.TIMBER_FRAMES).add(woodset.timberFrames().toArray(Block[]::new));
             getOrCreateTagBuilder(BlockusBlockTags.ALL_WOODEN_MOSAICS).add(woodset.mosaics().toArray(Block[]::new));
             getOrCreateTagBuilder(BlockusBlockTags.ALL_MOSSY_PLANKS).add(woodset.mossy().toArray(Block[]::new));
-            getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier("c", "planks_that_burn")))
+            getOrCreateTagBuilder(BlockusBlockTags.WOODEN_POSTS).add(woodset.posts().toArray(Block[]::new));
+            getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Identifier.of("c", "planks_that_burn")))
                 .add(woodset.herringbonePlanks())
                 .add(woodset.mosaics().get(0))
                 .add(woodset.mossy().get(0));

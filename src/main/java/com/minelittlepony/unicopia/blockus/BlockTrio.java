@@ -1,6 +1,7 @@
 package com.minelittlepony.unicopia.blockus;
 
 import java.util.List;
+
 import net.minecraft.block.Block;
 
 public class BlockTrio {
@@ -17,6 +18,13 @@ public class BlockTrio {
                 registrar.register(type + "_timber_frame", factory.block().create(base)),
                 registrar.register(type + "_diagonal_timber_frame", factory.orientable().create(base)),
                 registrar.register(type + "_cross_timber_frame", factory.block().create(base))
+        );
+    }
+
+    public static List<Block> createPosts(String type, Block base, BlockFactories factory, Registrar registrar) {
+        return List.of(
+                registrar.register(type + "_post", factory.post().create(base)),
+                registrar.register("stripped_" + type + "_post", factory.post().create(base))
         );
     }
 }
