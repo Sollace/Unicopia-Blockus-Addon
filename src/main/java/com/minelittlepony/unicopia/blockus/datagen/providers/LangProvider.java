@@ -32,7 +32,7 @@ public abstract class LangProvider implements DataProvider {
 
     @Override
     public CompletableFuture<?> run(DataWriter writer) {
-        Path path = langPathResolver.resolveJson(new Identifier(getDefaultNamespace(), "en_us"));
+        Path path = langPathResolver.resolveJson(Identifier.of(getDefaultNamespace(), "en_us"));
         JsonObject json = new JsonObject();
         generate(json::addProperty);
         return DataProvider.writeToPath(writer, json, path);

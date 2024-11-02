@@ -1,9 +1,8 @@
 package com.minelittlepony.unicopia.blockus.datagen.providers;
 
 import java.util.List;
-
 import com.brand.blockus.blocks.base.LargeFlowerPotBlock;
-import com.brand.blockus.content.BlockusBlocks;
+import com.brand.blockus.registry.content.BlockusBlocks;
 import com.minelittlepony.unicopia.blockus.UBlockusBlocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -27,6 +26,7 @@ public class UBlockusLootTableProvider extends FabricBlockLootTableProvider {
             addBlockStairsandSlabDrops(woodset.mosaics());
             addBlockStairsandSlabDrops(woodset.mossy());
             woodset.timberFrames().forEach(this::addDrop);
+            woodset.posts().forEach(this::addDrop);
             addDrop(woodset.herringbonePlanks());
             addDrop(woodset.smallLogs());
         });

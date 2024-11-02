@@ -10,9 +10,6 @@
     "sources": "https://github.com/Sollace/Unicopia-Blockus-Addon",
     "issues": "https://github.com/Sollace/Unicopia-Blockus-Addon/issues"
   },
-  "mixins": [
-    "unicopia-blockus.mixin.json"
-  ],
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",

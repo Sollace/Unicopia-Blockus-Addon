@@ -3,17 +3,19 @@ package com.minelittlepony.unicopia.blockus;
 import java.util.List;
 import java.util.stream.Stream;
 
-import com.brand.blockus.content.BlockusBlocks;
+import com.brand.blockus.registry.content.BlockusBlocks;
 import com.minelittlepony.unicopia.block.UBlocks;
 import com.minelittlepony.unicopia.block.zap.ZapBlock;
 import com.minelittlepony.unicopia.block.zap.ZapSlabBlock;
 import com.minelittlepony.unicopia.block.zap.ZapStairsBlock;
 import com.minelittlepony.unicopia.blockus.block.ZapOrientedBlock;
 import com.minelittlepony.unicopia.blockus.block.ZapPillarBlock;
+import com.minelittlepony.unicopia.blockus.block.ZapPostBlock;
 import com.minelittlepony.unicopia.blockus.block.ZapSmallHedgeBlock;
 import com.minelittlepony.unicopia.server.world.UTreeGen;
 
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -27,7 +29,8 @@ public interface UBlockusBlocks {
             ZapStairsBlock::new,
             BlockFactory.of(ZapPillarBlock::new),
             (base, settings) -> new ZapSmallHedgeBlock(settings.allowsSpawning(BlockFactories::canSpawnOnLeaves).suffocates(BlockFactories::never).blockVision(BlockFactories::never)),
-            BlockFactory.of(ZapOrientedBlock::new)
+            BlockFactory.of(ZapOrientedBlock::new),
+            BlockFactory.of(ZapPostBlock::new)
     );
     Registrar REGISTRAR = (String name, Block block, boolean addItem) -> {
         Registry.register(Registries.BLOCK, Main.id(name), block);
@@ -38,9 +41,9 @@ public interface UBlockusBlocks {
     };
 
     List<BlockusWoodset> WOOD_SETS = List.of(
-        new BlockusWoodset("palm", UBlocks.PALM_PLANKS, UBlocks.PALM_SLAB, UBlocks.PALM_LOG, BlockFactories.DEFAULT, REGISTRAR),
-        new BlockusWoodset("zap", UBlocks.ZAP_PLANKS, UBlocks.ZAP_SLAB, UBlocks.ZAP_LOG, ZAP_FACTORIES, REGISTRAR,
-            new BlockusWoodset("waxed_zap", UBlocks.WAXED_ZAP_PLANKS, UBlocks.WAXED_ZAP_SLAB, UBlocks.WAXED_ZAP_LOG, BlockFactories.DEFAULT, REGISTRAR)
+        new BlockusWoodset("palm", UBlocks.PALM_PLANKS, UBlocks.PALM_SLAB, UBlocks.PALM_LOG, UBlocks.STRIPPED_PALM_LOG, BlockFactories.DEFAULT, REGISTRAR),
+        new BlockusWoodset("zap", UBlocks.ZAP_PLANKS, UBlocks.ZAP_SLAB, UBlocks.ZAP_LOG, UBlocks.STRIPPED_ZAP_LOG, ZAP_FACTORIES, REGISTRAR,
+            new BlockusWoodset("waxed_zap", UBlocks.WAXED_ZAP_PLANKS, UBlocks.WAXED_ZAP_SLAB, UBlocks.WAXED_ZAP_LOG, UBlocks.WAXED_STRIPPED_ZAP_LOG, BlockFactories.DEFAULT, REGISTRAR)
         )
     );
     Block GOLDEN_OAK_SMALL_LOGS = REGISTRAR.register("golden_oak_small_logs", BlockFactories.DEFAULT.pillar().create(UBlocks.GOLDEN_OAK_LOG));
@@ -62,6 +65,9 @@ public interface UBlockusBlocks {
         WOOD_SETS.forEach(woodset -> {
             woodset.waxablePairs().forEach(pair -> {
                 OxidizableBlocksRegistry.registerWaxableBlockPair(pair.getLeft(), pair.getRight());
+            });
+            woodset.strippablePairs().forEach(pair -> {
+                StrippableBlockRegistry.register(pair.getLeft(), pair.getRight());
             });
         });
     }
