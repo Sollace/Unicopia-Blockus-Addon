@@ -38,10 +38,9 @@ public class UBlockusBlockTagProvider extends FabricTagProvider.BlockTagProvider
             getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Unicopia.id(woodset.id() + "_logs"))).add(woodset.smallLogs());
             getOrCreateTagBuilder(BlockTags.PLANKS).add(woodset.herringbonePlanks());
         });
-        getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, Unicopia.id("golden_oak_logs"))).add(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
         UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
             getOrCreateTagBuilder(BlockusBlockTags.LARGE_FLOWER_POTS).add(plantset.flowerPot());
-            getOrCreateTagBuilder(BlockusBlockTags.SMALL_HEDGES).add(plantset.smallHedge());
+            getOrCreateTagBuilder(BlockusBlockTags.HEDGES).add(plantset.smallHedge());
         });
     }
 }

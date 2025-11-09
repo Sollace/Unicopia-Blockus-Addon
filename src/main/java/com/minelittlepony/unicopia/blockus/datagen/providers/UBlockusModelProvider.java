@@ -66,7 +66,6 @@ public class UBlockusModelProvider extends BlockusModelProvider {
                 modelGenerator.registerParented(woodset.timberFrames().get(2), waxedset.timberFrames().get(2));
             });
         });
-        registerAxisRotatedCubeColumn(modelGenerator, UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
         UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
             Block leaves = plantset.leaves() == UBlocks.MANGO_LEAVES ? Blocks.JUNGLE_LEAVES : plantset.leaves();
             registerPottedPlant(modelGenerator, plantset.smallLogs(), leaves, plantset.flowerPot());

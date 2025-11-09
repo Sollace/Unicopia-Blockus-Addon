@@ -24,7 +24,6 @@ public class ULangProvider extends LangProvider {
                     .toArray(Block[]::new));
             generator.addTranslation(woodset.smallLogs().getTranslationKey(), "Small " + formatToTitleCase(woodset.id()) + " Logs");
         });
-        generator.addTranslation(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS.getTranslationKey(), "Small Golden Oak Logs");
         UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
             String id = formatToTitleCase(plantset.id().replace("green_apple", "granny_smith"));
             generator.addTranslation(plantset.flowerPot().getTranslationKey(), "Potted Large " + id);

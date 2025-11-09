@@ -39,7 +39,7 @@ public record BlockusWoodset (
             BlockTrio.createTimber(id, planks, factory, registrar),
             BlockTrio.createPosts(id, log, factory, registrar),
             registrar.register("herringbone_" + id + "_planks", factory.block().create(planks)),
-            registrar.register(id + "_small_logs", factory.pillar().create(log)),
+            registrar.alias(id + "_small_logs", "small_" + id + "_logs").register("small_" + id + "_logs", factory.pillar().create(log)),
             waxedSet
         );
     }

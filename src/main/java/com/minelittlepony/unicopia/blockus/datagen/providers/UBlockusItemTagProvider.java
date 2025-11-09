@@ -33,7 +33,7 @@ public class UBlockusItemTagProvider extends FabricTagProvider.ItemTagProvider {
             copy(TagKey.of(RegistryKeys.BLOCK, Unicopia.id(woodset.id() + "_logs")), TagKey.of(RegistryKeys.ITEM, Unicopia.id(woodset.id() + "_logs")));
             getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD).add(woodset.mossy().stream().map(Block::asItem).toArray(Item[]::new));
         });
-        copy(BlockusBlockTags.SMALL_HEDGES, BlockusItemTags.SMALL_HEDGES);
+        copy(BlockusBlockTags.HEDGES, BlockusItemTags.HEDGES);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.STAIRS, ItemTags.STAIRS);

@@ -33,7 +33,6 @@ public class UBlockusLootTableProvider extends FabricBlockLootTableProvider {
             addDrop(woodset.herringbonePlanks());
             addDrop(woodset.smallLogs());
         });
-        addDrop(UBlockusBlocks.GOLDEN_OAK_SMALL_LOGS);
         UBlockusBlocks.PLANT_SETS.forEach(plantset -> {
             addDrop(plantset.smallHedge(), this::stickDrops);
             addPottedLargePlantDrop(plantset.flowerPot());
